@@ -1,5 +1,6 @@
 plugins {
 	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id "io.freefair.lombok" version "5.3.0"
 	id 'maven-publish'
 }
 
@@ -11,11 +12,25 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // You should only use this when depending on other mods because
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repositories.
+	maven {
+		url = "https://maven.theillusivec4.top/"
+	}
+	maven {
+		name = "Ladysnake Libs"
+		url = 'https://dl.bintray.com/ladysnake/libs'
+	}
+	maven {
+		url 'https://jitpack.io'
+	}
+	maven {
+		name = "AdrianTodt's Maven"
+		url = "https://dl.bintray.com/adriantodt/maven"
+	}
+	maven {
+		url "https://maven.jamieswhiteshirt.com/libs-release/"
+	}
+	maven { url 'https://squiddev.cc/maven/' }
+
 }
 
 dependencies {
@@ -23,6 +38,13 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "top.theillusivec4.curios:curios-fabric:${project.curios_version}"
+	modImplementation("com.github.apace100:origins-fabric:${project.origins_version}") {
+		exclude(group:"io.github.OnyxStudios.Cardinal-Components-API")
+	}
+	implementation "org.squiddev:cc-tweaked-1.16.4:${project.computer_craft_version}"
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	implementation "com.fasterxml.jackson.core:jackson-databind:${project.jackson_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
@@ -81,7 +103,7 @@ publishing {
 			}
 		}
 	}
-    
+
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
         // Add repositories to publish to here.

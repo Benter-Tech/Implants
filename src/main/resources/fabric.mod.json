@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "implants",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Implants",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -14,16 +14,22 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/implants/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "github.benter.Implants"
+    ],
+    "client": [
+      "github.benter.ImplantsClient"
+    ],
+    "server": [
+      "github.benter.ImplantsServer"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "implants.mixins.json"
   ],
 
   "depends": {
